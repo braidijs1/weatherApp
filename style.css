@@ -151,3 +151,14 @@ button:hover {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
 }
+
+p{
+
+    color: #4a90e2;
+    font-weight: bold;
+    padding: 0.3vh;
+}
+#descriptionText{
+
+    color: whitesmoke;
+}

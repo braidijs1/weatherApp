@@ -17,7 +17,7 @@ const weatherAppDiv = document.querySelector(".weather-app");
 let weatherIcon = "";
 let fiveDayForecastData = "";
 const weekday = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-
+let data;
 async function fetchWeatherData(cityName) {
     try {
         weatherAppDiv.style.display = "none";
@@ -26,7 +26,7 @@ async function fetchWeatherData(cityName) {
         if (!response.ok) {
             throw new Error('City not found');
         }
-        const data = await response.json();
+         data = await response.json();
         console.log(data);
         weatherIconHTML.src = checkWeatherIcon(data);
         humidityText.textContent = `${data.main.humidity}%`;
@@ -37,11 +37,17 @@ async function fetchWeatherData(cityName) {
         descriptionText.textContent = data.weather[0].description.toUpperCase();
         weatherDetails.style.display = "flex";
     } catch (error) {
-        alert(error.message);
+    
+      
     } finally {
         document.getElementById("loader").style.display = "none"; // Hide loader
         weatherAppDiv.style.display = "block";
-        currentWeather.style.display = "block";
+      
+         if(
+            data   
+         ) {  currentWeather.style.display = "block";}
+       
+      
     }
 }
 
@@ -74,6 +80,7 @@ async function fetch5DayForecast(cityName) {
         forecast.style.display = "flex";
     } catch (error) {
         alert(error.message);
+
     } finally {
         document.getElementById("loader").style.display = "none"; // Hide loader
     }
